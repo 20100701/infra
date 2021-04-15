@@ -196,6 +196,7 @@ Il existe de plus en plus de solution open source :<br>
 <!-- Slide 10 -->
 <!--: .wrap -->
 ### **Focus : contrôle d'accès**
+
 {{< div class="content-left" >}}
 #### Qu'est-ce qu'un contrôle d'accès ?
 Les contrôles d'accès sont des éléments de sécurité du SI.<br>
@@ -230,7 +231,8 @@ Il est donc intéressant de mutualiser cette fonction pour limiter les coûts et
 <figure class="content-right">
   <img alt="ctrlaccess" src="https://image.freepik.com/vecteurs-libre/camera-surveillance-fond-realiste_1284-24308.jpg">
 </figure>
-<small>*note : les contrôles d'accès ne sont pas un besoin lié au cœur de métier des entreprises, il est donc fréquent de les classer dans les services d'infrastructure. Car ils fournissent un service essentiel au fonctionnement des SI au même titre que le NTP, le DNS, les proxies, ...*</small>
+
+<small> *note : les contrôles d'accès ne sont pas un besoin lié au cœur de métier des entreprises, il est donc fréquent de les classer dans les services d'infrastructure. Car ils fournissent un service essentiel au fonctionnement des SI au même titre que le NTP, le DNS, les proxies, ...* </small>
 
 ---
 <!-- Slide 11 -->
@@ -240,7 +242,7 @@ Il est donc intéressant de mutualiser cette fonction pour limiter les coûts et
 <!-- Slide 12 -->
 <!--: .wrap -->
 ### **Security Assertion Markup Language**
-<a href=https://www.oasis-open.org/standards#samlv2.0>SAML</a> est un protocole de fédération d'identité standardisé par l'<a href=https://www.oasis-open.org/>OASIS</a>. Il est principalement utilisé dans sa version 2.0 qui a été finalisée en 2012.
+<a href=https://www.oasis-open.org/standards#samlv2.0>SAML</a> est un protocole de fédération d'identité standardisé par l'<a href=https://www.oasis-open.org>OASIS</a>. Il est principalement utilisé dans sa version 2.0 qui a été finalisée en 2012.
 Le nombre des composants en jeu et les échanges entre ces derniers font de SAML un protocole simple à appréhender. Il a permis de simplifier la mise en œuvre de la fédération d'identité, pour comprendre pourquoi un Executive Overview est disponible <a href=https://www.oasis-open.org/committees/download.php/13525/sstc-saml-exec-overview-2.0-cd-01-2col.pdf>ici</a>.
 
 Dans la suite du document sont brièvement expliquer les concepts à l'oeuvre dans SAML. Pour aller plus loin dans la compréhension du protocole il est conseillé de se référer au Technical Overview (disponible <a href=https://www.oasis-open.org/committees/download.php/27819/sstc-saml-tech-overview-2.0-cd-02.pdf>ici</a>) ou bien aux <a href=http://saml.xml.org/saml-specifications>spécifications SAML</a>.
@@ -273,7 +275,9 @@ Elle peut aussi contenir des informations complémentaires.
 
 {{< div class="content-right" >}}
 <small>L'image ci-dessous représente un exemple d'assertion SAML 2.0 (*source : oasis-open.org*).</small><br>
-![assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0-cd-02_html_m928aca6.gif)<br>
+
+![assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0-cd-02_html_m928aca6.gif)
+
 {{< /div >}}
 
 ---
@@ -342,7 +346,7 @@ sequenceDiagram
 ---
 <!-- Slide 16 -->
 <!--: .wrap -->
-### SP initiated SSO : Redirect/Post bindings
+### **SP initiated SSO : Redirect/Post bindings**
 Dans ce cas d'usage, l'utilisateur appelle en première intention un SP. Comme l'utilisateur ne posséde pas d'assertion, le SP le redirige vers son IDP qui va l'authentifier, générer l'assertion et le rediriger vers le SP.
 Il est à noter que le SP fournit une information dans la requête de redirection qui permettra à l'IDP de rediriger l'utilisateur vers le SP demandé initialement. Le schéma ci-dessous représente une vue fonctionnelle simplifiée des échanges entre les différents acteurs.
 

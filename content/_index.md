@@ -238,6 +238,134 @@ Il est donc intéressant de mutualiser cette fonction pour limiter les coûts et
 
 
 ---
+<!-- Slide 12 -->
+<!--: .wrap -->
+# Security Assertion Markup Language
+<a href=https://www.oasis-open.org/standards#samlv2.0>SAML</a> est un protocole de fédération d'identité standardisé par l'<a href=https://www.oasis-open.org/>OASIS</a>. Il est principalement utilisé dans sa version 2.0 qui a été finalisée en 2012.
+Le nombre des composants en jeu et les échanges entre ces derniers font de SAML un protocole simple à appréhender. Il a permis de simplifier la mise en œuvre de la fédération d'identité, pour comprendre pourquoi un Executive Overview est disponible <a href=https://www.oasis-open.org/committees/download.php/13525/sstc-saml-exec-overview-2.0-cd-01-2col.pdf>ici</a>.
+
+Dans la suite du document sont brièvement expliquer les concepts en jeu dans SAML. Pour aller plus loin dans la compréhension du protocole il est conseillé de se référer au Technical Overview (disponible <a href=https://www.oasis-open.org/committees/download.php/27819/sstc-saml-tech-overview-2.0-cd-02.pdf>ici</a>) ou bien aux <a href=http://saml.xml.org/saml-specifications>spécifications SAML</a>.
+
+## Les composants : IDP et SP
+Le protocole définit 2 composants :  
+* Identity Provider aka "IDP"
+* Service Provider aka "SP"
+
+**L'Identity Provider**<br>
+L'IDP est le composant qui est en charge de générer la "preuve d'identité" conformément au "contrat d'interface" prédéfinit avec le SP. Il porte également la responsabilité de la phase d'authentification de l'utilisateur.
+
+**Le Service Provider**<br>
+Ce composant consomme la "preuve d'identité" générée par l'IDP, il vérifie l'intégrité de la preuve et y récupère l'identité de l'utilisateur ainsi que toutes autres informations transmises dans la "preuve d'identité" qui lui sont nécessaires.
+
+## Le contrat d'interface : partenariat
+Le contrat d'interface définit entre l'IDP et le SP est appelé partenariat. Il sert à définir les informations relatives à l'utilisateur transmises dans la preuve d'identité et leurs formats. Il contient à minima les informations relatives à la sécurité (ex : algorithmes de chiffrement et de signature à utiliser), il prend la forme de "<a href=http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf>metadata</a>".
+
+## La preuve d'identité : assertion
+Le protocole SAML appelle "<a href=http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf>assertion</a>" la preuve d'identité. Elle est générée par l'IDP et contient les informations relatives à l'utilisateur dans les formats définis dans le partenariat. Elle peut aussi contenir des informations complémentaires.
+
+L'image ci-dessous représente un exemple d'assertion SAML 2.0 (*source : oasis-open.org*).
+![assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0-cd-02_html_m928aca6.gif)<br>
+
+## Les cas d'usage
+Nous allons uniquement nous concentrer sur 2 cas d'usage SAML :
+* <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0-cd-02.html#5.1.4.IdP-Initiated SSO:  POST Binding|outline">IDP initiated SSO : Post binding</a><br>
+*  <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0-cd-02.html#5.1.2.SP-Initiated SSO:  Redirect/POST Bindings|outline">SP initiated SSO : Redirect/Post bindings</a><br>
+
+### IDP initiated SSO : Post binding
+Ce cas d'usage est le plus simple d'un point de vue protocolaire. L'utilisateur appelle en première intention une ressource de son IDP en passant en paramètre un identifiant correspondant au SP qu'il veut atteindre.
+L'IDP va demander à l'utilisateur de s'authentifier afin de générer une assertion contenant l'identité de l'utilisateur et conforme au partenariat définit avec le SP demandé.
+Une fois l'assertion générée, l'IDP va transmettre l'assertion à l'utilisateur et le redirige vers le SP demandé.
+
+Dans le TP nous n'allons pas suivre exactement la séquence des échanges définit dans la spécification technique SAML. Nous allons mettre en oeuvre la séquence suivante (vue fonctionnelle simplifiée) :
+
+### IDP Initiated (simplifié)
+
+``` mermaid
+
+sequenceDiagram
+
+    participant U as User
+    participant B as Browser
+    participant IDP as myIDP
+    participant SP as aSP
+
+    
+    U ->> B: clique sur le lien (IDP Initiated) pour accéder à "aSP"
+    activate U
+    activate B
+        B ->> IDP: requête pour demande une assertion afin d'accéder à "aSP"
+        activate IDP
+            IDP ->> IDP: Présence d'un contexte de sécurité : KO
+            IDP -->> B: demande d'authentification
+        deactivate IDP
+        B -->> U: affichage d'un formulaire
+    deactivate B
+    
+    U ->> B: saisie des informations d'authentification
+    activate B
+        B ->> IDP: envoie les informations d'authentification
+        activate IDP
+            IDP ->> IDP: vérification des informations d'authentification : OK
+            IDP ->> IDP: génération de l'assertion
+            IDP -->> B: redirection vers "aSP" + assertion
+        deactivate IDP
+        B ->> SP: requête d'accès à "aSP" + assertion
+        activate SP
+            SP ->> SP: vérification de l'assertion : OK
+            SP -->> B: réponse de "aSP"
+        deactivate SP
+        B -->> U: affichage de la réponse de "aSP"
+    deactivate B
+    deactivate U
+```
+
+### SP initiated SSO : Redirect/Post bindings
+Dans ce cas d'usage, l'utilisateur appelle en première intention un SP. Comme l'utilisateur ne posséde pas d'assertion, le SP le redirige vers son IDP qui va l'authentifier, générer l'assertion et le rediriger vers le SP.
+Il est à noter que le SP fournit une information dans la requête de redirection qui permettra à l'IDP de rediriger l'utilisateur vers le SP demandé initialement. Le schéma ci-dessous représente une vue fonctionnelle simplifiée des échanges entre les différents acteurs.
+
+``` mermaid
+sequenceDiagram
+    participant U as User
+    participant B as Browser
+    participant IDP as myIDP
+    participant SP as aSP
+
+    U ->> B: clique sur le lien (SP Initiated) pour accéder à "aSP"
+    activate U
+    activate B
+        B ->> SP: requête d'accès à "aSP"
+        activate SP
+            SP ->> SP: présence de l'assertion : KO
+            SP -->> B: redirection vers "myIDP" + demande d'authentification
+        deactivate SP
+        B ->> IDP: requête vers la fonction d'authentification de "myIDP"
+        activate IDP
+            IDP ->> IDP: présence d'un contexte de sécurité : KO
+            IDP -->> B: demande d'authentification
+        deactivate IDP
+        B -->> U: affichage d'un formulaire
+    deactivate B
+    
+    U ->> B: saisie des informations d'authentification
+    activate B
+        B --> IDP: envoie les informations d'authentification
+        activate IDP
+            IDP ->> IDP: vérification des informations d'authentification : OK
+            IDP ->> IDP: génération de l'assertion
+            IDP -->> B: redirection vers "aSP" + assertion
+        deactivate IDP
+        B ->> SP: requête d'accès à "aSP" + assertion
+        activate SP
+            SP ->> SP: vérification de l'assertion : OK
+            SP -->> B: réponse de "aSP"
+        deactivate SP
+        B -->> U: affichage de la réponse de "aSP"
+    deactivate B
+    deactivate U
+```
+
+
+---
 <!-- Slide END -->
 <!--: .wrap .text-landing bg=bg-white bg=aligncenter bgimage=https://images.unsplash.com/photo-1583791031153-d55e79f7f115?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1867&q=80 -->
 # **Thank you for your attention**

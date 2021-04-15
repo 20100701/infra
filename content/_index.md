@@ -40,16 +40,109 @@ Il sert donc de support pour un module d'enseignement de l'*Identity and Access 
 ---
 <!-- Slide 3 -->
 <!--: .wrap -->
-### Qu'est ce qu'un conteneur ?
-Un conteneur est un package logiciel (application) qui contient l'**ensemble des fichiers** (<small><a href=https://en.wikipedia.org/wiki/Everything_is_a_file>*Everything is a file*</a></small>) qui lui permettent de fonctionner de manière isolée, en autonomie.<br>
-C'est aussi un **processus** (ou ensemble de processus) **isolé** du reste du système, il posséde ses propres ressources : cpu, ram, réseau, sytème de fichiers, ...
-Il est construit à partir d'une **image de conteneur**.<br>
+### Identity and Access Management
+La gestion des identités et des accès (Identity and Access Management aka **IAM**) est un aspect important de la sécurité en entreprise.<br>
+Elle rassemble les processus qui permettent de gérer les identités et les habilitations qui donnent accès aux ressources du système d'information.
 
-<!--: .flexblock gallery -->
-- {{< gallery title="archi container" href="https://20100701.github.io/container/static/images/container.svg" src="https://20100701.github.io/container/static/images/container.svg" >}}{{< /gallery >}}
+Cela englobe l'ensemble du cycle de vie (création, modification, suppression et audit) des informations  liées aux identités numériques et droits d'accès associés.
 
+Opérationnellement, l'ensemble des solutions qui permettent le contrôle et la protection de ces informations sont liées à l'Identity and Access Management.
 
-{{% fontawesome book-reader %}}<small>Il est possible d'avoir un aperçu de l'histoire des conteneurs en cliquant <a href=https://blog.aquasec.com/a-brief-history-of-containers-from-1970s-chroot-to-docker-2016>ici</a>.</small>
+##### Les 4 composantes de base
+Il existe 4 sujets qui doivent être traités pour avoir une gestion homogène de la sécurité dans le cadre de l'IAM.<br>
+- **Identité** : gestion du cycle de vie des informations liées aux identités numériques sans prendre en compte les droits et les accès.<br>
+- **Authentification** : l'ensemble des moyens permettant de vérifier que la demande d'accès est effectuée par une entité légitime  (humain ou machine) et d'y associer une identité numérique.<br>
+- **Autorisation** : Gestion des droits et politiques d'accès aux ressources.<br>
+- **Fédération d'identité** : ensemble des processus et mécanismes qui permettent d'échanger de manière sécurisée l'identité d'une entité (humain ou machine).<br>
+
+---
+<!-- Slide 4 -->
+<!--: .wrap -->
+### Les enjeux de l'IAM
+Le déploiement d'un système de gestion IAM est onéreux mais il y a des avantages :<br>
+- **financier** : réduction coûts grâce un système spécialisé, dédié<br>
+- **sécurité** : gestion centralisée de l'authentification des utilisateurs, qualité des données<br>
+- **productivité** : augmente la productivité des utilisateurs, par exemple grâce au mécanisme de Single Sign-On (aka <a href=https://en.wikipedia.org/wiki/Single_sign-on>SSO</a>)<br>
+- **souplesse** : permet d'augmenter l'agilité du système d'information, scalabilité<br>
+
+---
+<!-- Slide 5 -->
+<!--: .wrap -->
+### Identité
+Une identité est l'ensemble des données qui permettent d'individualiser quelqu'un.<br>
+Une personne physique possède **plusieurs identités numériques**.<br>
+En effet, en fonction des ressources auxquelles elle veut accéder, l'identité peut varier :<br>
+- un nom de famille<br>
+- un identifiant unique<br>
+- une adresse mail<br>
+- une appartenance à une entité<br>
+- un certificat utilisateur (X509)<br>
+- ...<br>
+
+Au sein du système d'information, les **cycles de vie** des identités sont gérés par :<br>
+- une gouvernance<br>
+- des processus<br>
+- une traçabilité/auditabilité<br>
+- des formats<br>
+
+---
+<!-- Slide 6 -->
+<!--: .wrap -->
+### Authentification
+L'authentification dans un système d'information est un processus qui permet à un système de s'assurer qu'une demande d'accès est effectuée par un **utilisateur légitime** (humain ou machine).<br>
+Au terme de ce processus le système passe à la **phase d'identification**, il associe une identité à l'utilisateur. Cette identité peut-être attribuée par le système ou fournit lors de l'authentification.<br>
+
+Pour authentifier un utilisateur, un système lui demande une ou des **preuves**, elles sont aussi appelées "**facteurs d'authentification**", elles peuvent prendre plusieurs formes :<br>
+- un secret (ex: mot de passe, code PIN)<br>
+- un certificat (ex: X509)<br>
+- un équipement (ex: smartphone, carte SIM)<br>
+- biométrique (ex: empreinte digitale)<br>
+- l'accès à une ressource précise (ex: une boîte mail)<br>
+- ...<br>
+
+---
+<!-- Slide 7 -->
+<!--: .wrap -->
+### Autorisation
+Elle intervient **après la phase d'authentification**.<br>
+L'autorisation est le mécanisme qui permet d'autoriser un utilisateur à accéder à une **ressource**, une information en fonction des règles de contrôle d'accès.
+Ces règles sont la déclinaison de la politique d'accès aux ressources/informations de l'entreprise.<br>
+Il existe plusieurs possibilités pour définir une politique d'accès, les plus courantes sont :<br>
+- <a href=https://en.wikipedia.org/wiki/Role-based_access_control>RBAC</a> : Role-Based Access Control<br>
+- <a href=https://en.wikipedia.org/wiki/Attribute-based_access_control>ABAC</a> : Attribute-Based Access Control<br>
+
+---
+<!-- Slide 8 -->
+<!--: .wrap -->
+### Fédération d'identité
+Elle est utilisée lorsqu'un utilisateur veut accéder à des ressources gérées par un système de gestion des identités différents du sien.
+
+Les différentes phases sont partagées en fédération d'identité :<br>
+a) l'utilisateur s'authentifie auprès de son système d'IAM qui va lui fournir une "preuve d'identité"<br>
+b) l'utilisateur fournit cette "preuve d'identité" au système d'IAM de la ressource à laquelle il veut accéder<br> 
+
+La fédération d'identité est basée sur un principe de confiance entre le système IAM de l'utilisateur et celui de la ressource à laquelle ce dernier veut accéder. Cette confiance prend souvent à minima la forme d'une signature cryptographique de la "preuve d'identité".
+
+Techniquement, la fédération d'identité prend la forme de protocole dont les plus utilisés sont :
+* <a href=https://wiki.oasis-open.org/security/FrontPage#SAML_V2.0_Standard>SAML 2.0</a><br>
+* <a href=https://openid.net/connect/>OpenID</a> / <a href=https://oauth.net/2/>OAuth 2.0</a><br>
+
+Le protocole SAML 2.0 est fait pour répondre aux cas d'usage B2B tandis que le couple OIDC/Oauth 2.0 est adapté aux cas d'usage grand public, mais nous le retrouvons de plus en plus dans des cas d'usage B2B.
+
+*Remarque : l'utilisation de l'une ou l'autre des solutions doit se faire en fonction du contexte. Il n'y a pas une bonne et une mauvaise solution. C'est comme un marteau et un tournevis, en fonction du contexte vous utilisez l'un ou l'autre.* 
+
+# Exemples de solution technique
+Les acteurs commerciaux ou open source couvrent souvent plusieurs aspects de l'IAM. 
+
+Le Gartner fournit une liste (non exhaustive) des solutions commerciales de gestion des identités consultable <a href=https://www.gartner.com/reviews/market/identity-governance-administration>ici</a> et une liste (non exhaustive) des solutions de gestion des accès consultable <a href=https://www.gartner.com/reviews/market/access-management/>là</a>.<br>
+
+Il existe de plus en plus de solution open source :
+* <a href=https://www.keycloak.org/>Keycloak</a><br>
+* <a href=https://www.univention.com/>Univention Corporate Server</a><br>
+* <a href=https://syncope.apache.org/>Apache Syncope</a><br>
+* <a href=https://www.gluu.org/>Gluu</a><br>
+* <a href=http://directory.apache.org/fortress/>Apache Fortress</a><br>
+* ...
 
 ---
 <!-- Slide 4 -->

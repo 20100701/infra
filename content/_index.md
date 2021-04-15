@@ -236,7 +236,11 @@ Il est donc intéressant de mutualiser cette fonction pour limiter les coûts et
 
 ---
 <!-- Slide 11 -->
-<!--: .wrap .text-landing bg=bg-white bg=aligncenter bgimage=https://20100701.github.io/static/images/saml-2.0.png -->
+<!--: .wrap -->
+
+<figure class="content-center">
+  <img alt="ctrlaccess" src="https://20100701.github.io/infra/static/images/saml-2.0.png">
+</figure>
 
 ---
 <!-- Slide 12 -->

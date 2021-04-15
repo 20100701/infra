@@ -1,0 +1,29 @@
+
+
+baseurl = "https://20100701.github.io/infra/"
+theme           = "hugo-webslides"
+languageCode = "fr-FR"
+title = "Identity and Access Management overview"
+features = ["webslides.js", "pre-made template", "shortcodes"]
+
+[params]
+  author = "Alexandre Linte, Gaëtan Allain"
+
+[params.webslides]
+  banner = false
+  slideshow = true
+  vertical = false
+  autoslide = false
+  changeOnClick = false
+  disableLoop = false
+  minWheelDelta = 40
+  disableNavigateOnScroll = false
+  scrollWait = 450
+  slideOffset = 50
+  hideIndex = false
+
+[markup]
+  defaultMarkdownHandler = "blackfriday"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+    unsafe = true

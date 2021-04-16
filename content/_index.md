@@ -310,7 +310,7 @@ Une fois l'assertion générée, l'IDP va transmettre l'assertion à l'utilisate
 
 ### IDP Initiated (simplifié)
 
-``` mermaid
+```mermaid
 sequenceDiagram
 
     participant U as User
@@ -356,7 +356,7 @@ sequenceDiagram
 Dans ce cas d'usage, l'utilisateur appelle en première intention un SP. Comme l'utilisateur ne posséde pas d'assertion, le SP le redirige vers son IDP qui va l'authentifier, générer l'assertion et le rediriger vers le SP.
 Il est à noter que le SP fournit une information dans la requête de redirection qui permettra à l'IDP de rediriger l'utilisateur vers le SP demandé initialement. Le schéma ci-dessous représente une vue fonctionnelle simplifiée des échanges entre les différents acteurs.
 
-``` mermaid
+```mermaid
 sequenceDiagram
     participant U as User
     participant B as Browser

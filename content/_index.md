@@ -310,44 +310,9 @@ Une fois l'assertion générée, l'IDP va transmettre l'assertion à l'utilisate
 
 ### IDP Initiated (simplifié)
 
-```mermaid
-sequenceDiagram
-
-    participant U as User
-    participant B as Browser
-    participant IDP as myIDP
-    participant SP as aSP
-
-    
-    U ->> B: clique sur le lien (IDP Initiated) pour accéder à "aSP"
-    activate U
-    activate B
-        B ->> IDP: requête pour demande une assertion afin d'accéder à "aSP"
-        activate IDP
-            IDP ->> IDP: Présence d'un contexte de sécurité : KO
-            IDP -->> B: demande d'authentification
-        deactivate IDP
-        B -->> U: affichage d'un formulaire
-    deactivate B
-    
-    U ->> B: saisie des informations d'authentification
-    activate B
-        B ->> IDP: envoie les informations d'authentification
-        activate IDP
-            IDP ->> IDP: vérification des informations d'authentification : OK
-            IDP ->> IDP: génération de l'assertion
-            IDP -->> B: redirection vers "aSP" + assertion
-        deactivate IDP
-        B ->> SP: requête d'accès à "aSP" + assertion
-        activate SP
-            SP ->> SP: vérification de l'assertion : OK
-            SP -->> B: réponse de "aSP"
-        deactivate SP
-        B -->> U: affichage de la réponse de "aSP"
-    deactivate B
-    deactivate U
-```
-
+<figure class="content-right">
+  <img alt="uc-saml" src="https://20100701.github.io/infra/static/images/idp-init.png">
+</figure>
 
 ---
 <!-- Slide 16 -->
@@ -356,46 +321,10 @@ sequenceDiagram
 Dans ce cas d'usage, l'utilisateur appelle en première intention un SP. Comme l'utilisateur ne posséde pas d'assertion, le SP le redirige vers son IDP qui va l'authentifier, générer l'assertion et le rediriger vers le SP.
 Il est à noter que le SP fournit une information dans la requête de redirection qui permettra à l'IDP de rediriger l'utilisateur vers le SP demandé initialement. Le schéma ci-dessous représente une vue fonctionnelle simplifiée des échanges entre les différents acteurs.
 
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant B as Browser
-    participant IDP as myIDP
-    participant SP as aSP
 
-    U ->> B: clique sur le lien (SP Initiated) pour accéder à "aSP"
-    activate U
-    activate B
-        B ->> SP: requête d'accès à "aSP"
-        activate SP
-            SP ->> SP: présence de l'assertion : KO
-            SP -->> B: redirection vers "myIDP" + demande d'authentification
-        deactivate SP
-        B ->> IDP: requête vers la fonction d'authentification de "myIDP"
-        activate IDP
-            IDP ->> IDP: présence d'un contexte de sécurité : KO
-            IDP -->> B: demande d'authentification
-        deactivate IDP
-        B -->> U: affichage d'un formulaire
-    deactivate B
-    
-    U ->> B: saisie des informations d'authentification
-    activate B
-        B --> IDP: envoie les informations d'authentification
-        activate IDP
-            IDP ->> IDP: vérification des informations d'authentification : OK
-            IDP ->> IDP: génération de l'assertion
-            IDP -->> B: redirection vers "aSP" + assertion
-        deactivate IDP
-        B ->> SP: requête d'accès à "aSP" + assertion
-        activate SP
-            SP ->> SP: vérification de l'assertion : OK
-            SP -->> B: réponse de "aSP"
-        deactivate SP
-        B -->> U: affichage de la réponse de "aSP"
-    deactivate B
-    deactivate U
-```
+<figure class="content-right">
+  <img alt="uc-saml" src="https://20100701.github.io/infra/static/images/sp-init.png">
+</figure>
 
 
 ---

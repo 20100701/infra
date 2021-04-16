@@ -7,7 +7,7 @@ title = "Identity and Access Management Overview"
 
 {{< div class="content-center" >}}
 # **IAM Overview**  
-[{{% fontawesome github %}} Github](https://20100701.github.io/infra/)
+[{{% fontawesome github %}} Github](https://github.com/20100701/infra)
 {{< /div >}}
 
 ---
@@ -279,7 +279,6 @@ Elle peut aussi contenir des informations complémentaires.
 
 {{< div class="content-right" >}}
 <small>L'image ci-dessous représente un exemple d'assertion SAML 2.0 (*source : oasis-open.org*).</small><br>
-
 ![assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0-cd-02_html_m928aca6.gif)
 
 {{< /div >}}
@@ -292,6 +291,9 @@ Elle peut aussi contenir des informations complémentaires.
 Nous allons uniquement nous concentrer sur 2 cas d'usage SAML 2.0 :<br>
 - <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0-cd-02.html#5.1.4.IdP-Initiated SSO:  POST Binding|outline">IDP initiated SSO : Post binding</a><br>
 - <a href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0-cd-02.html#5.1.2.SP-Initiated SSO:  Redirect/POST Bindings|outline">SP initiated SSO : Redirect/Post bindings</a><br>
+<br>
+Il existe d'autres cas d'usage disponibles (ex : *just in time provisioning*) avec SAML 2.0, mais à ma connaissance ils sont peu utilisés.<br>
+Mais ils peuvent être intéressant dans certains contextes.
 {{< /div >}}
 
 <figure class="content-right">
@@ -308,8 +310,8 @@ Une fois l'assertion générée, l'IDP va transmettre l'assertion à l'utilisate
 
 ### IDP Initiated (simplifié)
 
-``` mermaid
-
+<!-- ``` mermaid -->
+{{< mermaid >}}
 sequenceDiagram
 
     participant U as User
@@ -345,7 +347,8 @@ sequenceDiagram
         B -->> U: affichage de la réponse de "aSP"
     deactivate B
     deactivate U
-```
+<!-- ``` -->
+{{< /mermaid >}}
 
 ---
 <!-- Slide 16 -->

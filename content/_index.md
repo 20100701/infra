@@ -310,8 +310,7 @@ Une fois l'assertion générée, l'IDP va transmettre l'assertion à l'utilisate
 
 ### IDP Initiated (simplifié)
 
-<!-- ``` mermaid -->
-{{< mermaid >}}
+``` mermaid
 sequenceDiagram
 
     participant U as User
@@ -347,8 +346,8 @@ sequenceDiagram
         B -->> U: affichage de la réponse de "aSP"
     deactivate B
     deactivate U
-<!-- ``` -->
-{{< /mermaid >}}
+```
+
 
 ---
 <!-- Slide 16 -->

@@ -28,6 +28,3 @@ features = ["webslides.js", "pre-made template", "shortcodes"]
     [markup.goldmark.renderer]
     unsafe = true
 
-[module]
-  [[module.imports]]
-    path = "https://github.com/peaceiris/hugo-mod-mermaidjs"

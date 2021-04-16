@@ -311,7 +311,7 @@ Une fois l'assertion générée, l'IDP va transmettre l'assertion à l'utilisate
 ### IDP Initiated (simplifié)
 
 <!--: .flexblock gallery -->
-- {{< gallery title="idpinit" href="https://20100701.github.io/infra/static/images/idp-init.png" src="https://20100701.github.io/infra/static/images/idp-init.png" >}}{{< /gallery >}}
+- {{< gallery title="idpinit" href="https://20100701.github.io/infra/static/images/idp-seq.png" src="https://20100701.github.io/infra/static/images/idp-seq.png" >}}{{< /gallery >}}
 
 ---
 <!-- Slide 16 -->

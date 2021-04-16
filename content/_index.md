@@ -311,7 +311,7 @@ Une fois l'assertion générée, l'IDP va transmettre l'assertion à l'utilisate
 ### IDP Initiated (simplifié)
 
 <!--: .flexblock gallery -->
-- {{< gallery title="idpinit" href="https://20100701.github.io/infra/static/images/idp-seq.png" src="https://20100701.github.io/infra/static/images/idp-seq.png" >}}{{< /gallery >}}
+- {{< gallery title="idpinit" href="https://20100701.github.io/infra/static/images/idp-init.png" src="https://20100701.github.io/infra/static/images/idp-init.png" >}}{{< /gallery >}}
 
 ---
 <!-- Slide 16 -->
@@ -322,7 +322,6 @@ Il est à noter que le SP fournit une information dans la requête de redirectio
 
 <!--: .flexblock gallery -->
 - {{< gallery title="sppinit" href="https://20100701.github.io/infra/static/images/sp-init.png" src="https://20100701.github.io/infra/static/images/sp-init.png" >}}{{< /gallery >}}
-
 
 ---
 <!-- Slide END -->

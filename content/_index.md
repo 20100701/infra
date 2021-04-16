@@ -311,7 +311,7 @@ Une fois l'assertion générée, l'IDP va transmettre l'assertion à l'utilisate
 ### IDP Initiated (simplifié)
 
 <figure class="content-right">
-  <img alt="uc-saml" src="https://20100701.github.io/infra/static/images/idp-init.png">
+  <img alt="idpinit" src="https://20100701.github.io/infra/static/images/idp-init.png">
 </figure>
 
 ---
@@ -323,7 +323,7 @@ Il est à noter que le SP fournit une information dans la requête de redirectio
 
 
 <figure class="content-right">
-  <img alt="uc-saml" src="https://20100701.github.io/infra/static/images/sp-init.png">
+  <img alt="spinit" src="https://20100701.github.io/infra/static/images/sp-init.png">
 </figure>
 
 

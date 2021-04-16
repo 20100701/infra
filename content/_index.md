@@ -310,9 +310,8 @@ Une fois l'assertion générée, l'IDP va transmettre l'assertion à l'utilisate
 
 ### IDP Initiated (simplifié)
 
-<figure class="content-right">
-  <img alt="idpinit" src="https://20100701.github.io/infra/static/images/idp-init.png">
-</figure>
+<!--: .flexblock gallery -->
+- {{< gallery title="idpinit" href="https://20100701.github.io/infra/static/images/idp-init.png" src="https://20100701.github.io/infra/static/images/idp-init.png" >}}{{< /gallery >}}
 
 ---
 <!-- Slide 16 -->
@@ -321,10 +320,8 @@ Une fois l'assertion générée, l'IDP va transmettre l'assertion à l'utilisate
 Dans ce cas d'usage, l'utilisateur appelle en première intention un SP. Comme l'utilisateur ne posséde pas d'assertion, le SP le redirige vers son IDP qui va l'authentifier, générer l'assertion et le rediriger vers le SP.
 Il est à noter que le SP fournit une information dans la requête de redirection qui permettra à l'IDP de rediriger l'utilisateur vers le SP demandé initialement. Le schéma ci-dessous représente une vue fonctionnelle simplifiée des échanges entre les différents acteurs.
 
-
-<figure class="content-right">
-  <img alt="spinit" src="https://20100701.github.io/infra/static/images/sp-init.png">
-</figure>
+<!--: .flexblock gallery -->
+- {{< gallery title="sppinit" href="https://20100701.github.io/infra/static/images/sp-init.png" src="https://20100701.github.io/infra/static/images/sp-init.png" >}}{{< /gallery >}}
 
 
 ---

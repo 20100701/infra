@@ -324,6 +324,62 @@ Il est à noter que le SP fournit une information dans la requête de redirectio
 - {{< gallery title="sppinit" href="https://20100701.github.io/infra/static/images/sp-init.png" src="https://20100701.github.io/infra/static/images/sp-init.png" >}}{{< /gallery >}}
 
 ---
+<!-- Slide 17 -->
+<!--: .wrap .text-landing bg=bg-white bg=aligncenter bgimage=https://openid.net/wordpress-content/uploads/2011/09/OPENID_CONNECT_NEW-Logo-1024x474.jpg -->
+
+---
+<!-- Slide 16 -->
+<!--: .wrap -->
+### Open ID Connect overview
+{{< div class="content-left" >}}
+<A href="https://openid.net/connect/">OpenID Connect</A> (aka OIDC) est une couche d'authentification au dessus de <A href="https://oauth.net/2/">OAuth 2.0</A> qui est un protocole d'autorisation.
+
+Concrétement OIDC est une API HTTP <a href=https://tools.ietf.org/html/rfc6690>Restfull</a> qui utilise le format <a href=https://tools.ietf.org/html/rfc7159>JSON</a> pour la partie donnée.
+
+OIDC est intéressant car il permet d'être utilisé dans plusieurs cas d'usage : Web based, mobile, Javascript client.
+{{< /div >}}
+
+<figure class="content-right">
+  <img alt="oidc" src="https://openid.net/wordpress-content/uploads/2014/02/OpenIDConnect-Map-4Feb2014.png">
+</figure>
+
+
+---
+<!-- Slide XX -->
+<!--: .wrap -->
+### GET userinfo
+
+~~~
+GET /userinfo HTTP/1.1
+Host: myservice.com
+Authorization: Bearer Gp7b5hiURKpWffczofpgMJP38EnYimgxlBC1PpS2zGXUqe
+~~~
+
+<br>
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+ "sub"         : "2azdz761001",
+ "name"        : "Jane Doe"
+ "given_name"  : "Jane",
+ "family_name" : "Doe",
+ "email"       : "janedoe@example.com",
+ "picture"     : "http://example.com/janedoe/myface.jpg"
+}
+~~~
+
+---
+<!-- Slide XX -->
+<!--: .wrap -->
+### Claims
+Les *claims* sont des informations sur le *end-user* ou l'authentification. Une liste de *claims* standards sont définis dans la spécification.<br>
+
+https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
+
+---
 <!-- Slide END -->
 <!--: .wrap .text-landing bg=bg-white bg=aligncenter bgimage=https://images.unsplash.com/photo-1583791031153-d55e79f7f115?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1867&q=80 -->
 # **Thank you for your attention**

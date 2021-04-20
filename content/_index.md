@@ -347,6 +347,14 @@ OIDC est intéressant car il permet d'être utilisé dans plusieurs cas d'usage 
 ---
 <!-- Slide XX -->
 <!--: .wrap -->
+
+<!--: .flexblock gallery -->
+- {{< gallery title="oidcseq" href="https://meritis.fr/wp-content/uploads/2018/02/null-1.png" src="https://meritis.fr/wp-content/uploads/2018/02/null-1.png" >}}{{< /gallery >}}
+
+
+---
+<!-- Slide XX -->
+<!--: .wrap -->
 ### GET userinfo
 
 ~~~
@@ -378,6 +386,8 @@ Content-Type: application/json
 Les *claims* sont des informations sur le *end-user* ou l'authentification. Une liste de *claims* standards sont définis dans la spécification.<br>
 
 https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
+
+
 
 ---
 <!-- Slide END -->
